@@ -1,0 +1,4 @@
+version=0.27.0
+margin=120
+profile=conventional
+break-string-literals=never

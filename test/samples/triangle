@@ -1,0 +1,9 @@
+tri:
+    DUP JMP0 end DUP LIT -1 PLUS CALL tri PLUS
+end:
+    RET
+
+main:
+    LIT 5
+    CALL tri
+    HLT

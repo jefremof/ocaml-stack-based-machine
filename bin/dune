@@ -1,0 +1,8 @@
+(include_subdirs qualified)
+
+(executable
+ (public_name gullwing)
+ (name main)
+ (preprocess
+  (pps ppx_deriving.show ppx_deriving.ord ppx_deriving.enum))
+ (libraries gullwing core))

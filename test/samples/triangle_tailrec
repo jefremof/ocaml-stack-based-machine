@@ -1,0 +1,10 @@
+tri:
+    OVER JMP0 end OVER + >R LIT -1 + R> CALL tri RET
+end:
+    >R DROP R> RET
+
+main:
+    LIT 5
+    LIT 0
+    CALL tri
+    HLT

@@ -12,6 +12,7 @@ bug-reports: "https://github.com/jefremof/ocaml-stack-based-machine/issues"
 depends: [
   "dune" {>= "3.17"}
   "ocaml"
+  "core"
   "odoc" {with-doc}
 ]
 build: [

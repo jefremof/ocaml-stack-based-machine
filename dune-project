@@ -18,7 +18,7 @@
  (synopsis "OCaml implementation of the simple stack-based machine")
  (description "OCaml implementation of the simple stack-based machine. Based on Charles Eric LaForest's Gullwing and heavily inspired by his book \"Second-Generation Stack Computer
 Architecture\"")
- (depends ocaml)
+ (depends ocaml core)
 )
 
 ; See the complete stanza docs at https://dune.readthedocs.io/en/stable/reference/dune-project/index.html

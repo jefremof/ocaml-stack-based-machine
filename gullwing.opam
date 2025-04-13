@@ -6,7 +6,7 @@ OCaml implementation of the simple stack-based machine. Based on Charles Eric La
 Architecture\""""
 maintainer: ["Mark Efremov jefremovmark@gmail.com"]
 authors: ["Mark Efremov jefremovmark@gmail.com"]
-license: "LICENSE"
+license: "MIT"
 homepage: "https://github.com/jefremof/ocaml-stack-based-machine"
 bug-reports: "https://github.com/jefremof/ocaml-stack-based-machine/issues"
 depends: [

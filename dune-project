@@ -11,7 +11,7 @@
 
 (maintainers "Mark Efremov jefremovmark@gmail.com")
 
-(license LICENSE)
+(license MIT)
 
 (package
  (name gullwing)

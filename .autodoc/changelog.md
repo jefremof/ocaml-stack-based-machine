@@ -15,6 +15,12 @@ history (`63b33da` … present) since no changelog existed before.
 - Affects: `.github/workflows/main.yml` only (CI configuration). Trade-off: `opam lint` validates package metadata but drops opam-dune-lint's dune/opam dependency-consistency check, which is low value here since the opam file is generated from `dune-project` (`generate_opam_files`).
 - By: Efremov Mark
 
+## 2026-07-26 — instruction-format diagram in README
+- What: added `docs/instruction-format.svg` — an original redraw of the Gullwing instruction word layout (six 5-bit slots S0–S5 + 2 unused bits; data words occupy a full word), and embedded it in a new `Формат инструкций` section of `README.md` that ties it to `word_to_batch`. The SVG is our own drawing, marked "адаптировано из … Fig. 6.3", per the attribution policy.
+- Why: the packing of instructions into a machine word is the core idea the code implements; a diagram makes it legible.
+- Affects: `README.md`, `docs/instruction-format.svg` (docs only).
+- By: Efremov Mark
+
 ## 2026-07-26 — Russian source attribution in README; .DS_Store ignored
 - What: `README.md` gained an `Источники и атрибуция` section — a full citation of Charles Eric LaForest's thesis *Second-Generation Stack Computer Architecture* (University of Waterloo, 2007) that the machine is based on, plus a short Russian policy for how the work's material is reused (own-words explanations, redrawn/re-derived figures marked "адаптировано из", short attributed quotes). `.gitignore` now ignores `.DS_Store`.
 - Why: the thesis' own terms require that quotations and derived information be acknowledged; the citation is that acknowledgment. Verbatim reproduction of its figures/tables is avoided in favour of redrawing, which its terms permit.

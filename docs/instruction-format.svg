@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 400" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+  <!-- background card: fixed light panel so it reads on both light and dark pages -->
+  <rect x="0" y="0" width="760" height="400" rx="10" fill="#ffffff" stroke="#d7dde3"/>
+
+  <!-- title -->
+  <text x="30" y="34" font-size="17" font-weight="700" fill="#1a202c">Формат инструкционного слова Gullwing</text>
+  <text x="30" y="54" font-size="12.5" fill="#5a6570">32-битное слово = 6 слотов по 5 бит (S0–S5) + 2 неиспользуемых старших бита</text>
+
+  <!-- column headers S0..S5 -->
+  <g font-size="13" font-weight="600" fill="#5a6570" text-anchor="middle">
+    <text x="114" y="86">S0</text>
+    <text x="222" y="86">S1</text>
+    <text x="330" y="86">S2</text>
+    <text x="438" y="86">S3</text>
+    <text x="546" y="86">S4</text>
+    <text x="654" y="86">S5</text>
+  </g>
+
+  <!-- address gutter labels -->
+  <g font-size="12.5" fill="#8a94a0" text-anchor="middle">
+    <text x="40" y="122">1</text>
+    <text x="40" y="166">2</text>
+    <text x="40" y="210">3</text>
+    <text x="40" y="254">4</text>
+    <text x="40" y="298">5</text>
+  </g>
+  <text x="40" y="330" font-size="10.5" fill="#b0b8c0" text-anchor="middle">адрес</text>
+
+  <!-- ROW 1 (addr 1): instruction word -->
+  <g>
+    <rect x="60"  y="98" width="108" height="42" fill="#eaf2fb" stroke="#2b6cb0"/>
+    <rect x="168" y="98" width="108" height="42" fill="#eaf2fb" stroke="#2b6cb0"/>
+    <rect x="276" y="98" width="108" height="42" fill="#eaf2fb" stroke="#2b6cb0"/>
+    <rect x="384" y="98" width="108" height="42" fill="#eaf2fb" stroke="#2b6cb0"/>
+    <rect x="492" y="98" width="108" height="42" fill="#eaf2fb" stroke="#2b6cb0"/>
+    <rect x="600" y="98" width="108" height="42" fill="#eef1f4" stroke="#9aa5b1"/>
+    <g font-family="'SF Mono','Consolas',monospace" font-size="14" text-anchor="middle">
+      <text x="114" y="124" fill="#1a365d">&gt;R</text>
+      <text x="222" y="124" fill="#1a365d">JMP0</text>
+      <text x="330" y="124" fill="#1a365d">DUP</text>
+      <text x="438" y="124" fill="#1a365d">LIT</text>
+      <text x="546" y="124" fill="#1a365d">+</text>
+      <text x="654" y="124" fill="#8a94a0">PC@</text>
+    </g>
+  </g>
+
+  <!-- ROW 2 (addr 2): data word -->
+  <rect x="60" y="144" width="648" height="42" fill="#fdf3e0" stroke="#c05621"/>
+  <text x="384" y="170" font-size="13.5" fill="#7b341e" text-anchor="middle">Адрес для JMP0  (→ 4)</text>
+
+  <!-- ROW 3 (addr 3): data word -->
+  <rect x="60" y="188" width="648" height="42" fill="#fdf3e0" stroke="#c05621"/>
+  <text x="384" y="214" font-size="13.5" fill="#7b341e" text-anchor="middle">Значение для LIT</text>
+
+  <!-- ROW 4 (addr 4): instruction word -->
+  <g>
+    <rect x="60"  y="232" width="108" height="42" fill="#eaf2fb" stroke="#2b6cb0"/>
+    <rect x="168" y="232" width="108" height="42" fill="#eaf2fb" stroke="#2b6cb0"/>
+    <rect x="276" y="232" width="108" height="42" fill="#eaf2fb" stroke="#2b6cb0"/>
+    <rect x="384" y="232" width="108" height="42" fill="#eef1f4" stroke="#9aa5b1"/>
+    <rect x="492" y="232" width="108" height="42" fill="#eef1f4" stroke="#9aa5b1"/>
+    <rect x="600" y="232" width="108" height="42" fill="#eef1f4" stroke="#9aa5b1"/>
+    <g font-family="'SF Mono','Consolas',monospace" font-size="14" text-anchor="middle">
+      <text x="114" y="258" fill="#1a365d">R&gt;</text>
+      <text x="222" y="258" fill="#1a365d">XOR</text>
+      <text x="330" y="258" fill="#1a365d">CALL</text>
+      <text x="438" y="258" fill="#8a94a0">PC@</text>
+      <text x="546" y="258" fill="#8a94a0">PC@</text>
+      <text x="654" y="258" fill="#8a94a0">PC@</text>
+    </g>
+  </g>
+
+  <!-- ROW 5 (addr 5): data word -->
+  <rect x="60" y="276" width="648" height="42" fill="#fdf3e0" stroke="#c05621"/>
+  <text x="384" y="302" font-size="13.5" fill="#7b341e" text-anchor="middle">Адрес для CALL</text>
+
+  <!-- legend -->
+  <g font-size="11.5">
+    <rect x="60" y="340" width="16" height="12" fill="#eaf2fb" stroke="#2b6cb0"/>
+    <text x="82" y="350" fill="#5a6570">слот инструкции (5 бит)</text>
+    <rect x="248" y="340" width="16" height="12" fill="#eef1f4" stroke="#9aa5b1"/>
+    <text x="270" y="350" fill="#5a6570">PC@ — выборка следующей группы</text>
+    <rect x="500" y="340" width="16" height="12" fill="#fdf3e0" stroke="#c05621"/>
+    <text x="522" y="350" fill="#5a6570">слово-данные (адрес / литерал)</text>
+  </g>
+
+  <!-- attribution -->
+  <text x="30" y="384" font-size="11" fill="#8a94a0">Адаптировано из: C. E. LaForest, «Second-Generation Stack Computer Architecture», 2007, Fig. 6.3.</text>
+</svg>

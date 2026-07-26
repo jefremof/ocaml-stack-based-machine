@@ -1,8 +1,14 @@
 name: Builds, tests & co
 
 on:
-  - push
-  - pull_request
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
 
 permissions: read-all
 

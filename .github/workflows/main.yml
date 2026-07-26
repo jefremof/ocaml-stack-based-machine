@@ -12,9 +12,14 @@ on:
 
 permissions: read-all
 
-# The four jobs run in parallel. Each sets up OCaml from the same shared, pinned
-# cache (built once on a cold run, restored on warm ones), so wall-clock is the
-# slowest single lane — the build — rather than the sum of all steps.
+# The four jobs run in parallel; each sets up OCaml from the same pinned/cached
+# base. On top of that, each job caches its own `_opam` switch (the built Core/ppx
+# tree, plus that lane's linter tool) with actions/cache — setup-ocaml deliberately
+# does NOT cache `opam install . --deps-only`, so without this the dependency tree
+# recompiles (~2 min) on every run. The cache refreshes automatically when the
+# dependency set changes (the key hashes dune-project + gullwing.opam); to force a
+# rebuild that picks up new opam-repository versions without touching deps, bump the
+# version segment (`v1`) in the keys below.
 jobs:
   build-test:
     permissions:
@@ -40,6 +45,13 @@ jobs:
         with:
           ocaml-compiler: ${{ matrix.ocaml-compiler }}
           dune-cache: true
+      - name: Cache opam switch
+        uses: actions/cache@v4
+        with:
+          path: _opam
+          key: opam-v1-${{ runner.os }}-5.2.1-build-${{ hashFiles('dune-project', 'gullwing.opam') }}
+          restore-keys: |
+            opam-v1-${{ runner.os }}-5.2.1-build-
       - run: opam install . --deps-only --with-test
       - run: opam exec -- dune build
       - run: opam exec -- dune runtest
@@ -54,6 +66,13 @@ jobs:
         with:
           ocaml-compiler: "5.2.1"
           dune-cache: true
+      - name: Cache opam switch
+        uses: actions/cache@v4
+        with:
+          path: _opam
+          key: opam-v1-${{ runner.os }}-5.2.1-fmt-${{ hashFiles('dune-project', 'gullwing.opam', '.ocamlformat') }}
+          restore-keys: |
+            opam-v1-${{ runner.os }}-5.2.1-fmt-
       - uses: ocaml/setup-ocaml/lint-fmt@v3
 
   lint-doc:
@@ -66,12 +85,21 @@ jobs:
         with:
           ocaml-compiler: "5.2.1"
           dune-cache: true
+      - name: Cache opam switch
+        uses: actions/cache@v4
+        with:
+          path: _opam
+          key: opam-v1-${{ runner.os }}-5.2.1-doc-${{ hashFiles('dune-project', 'gullwing.opam') }}
+          restore-keys: |
+            opam-v1-${{ runner.os }}-5.2.1-doc-
       - uses: ocaml/setup-ocaml/lint-doc@v3
 
   # Plain `opam lint` instead of ocaml/setup-ocaml/lint-opam@v3: that action
   # installs opam-dune-lint, which pins an older dune and forces a downgrade +
   # recompile of ~67 packages (the whole Core/ppx tree) — ~3m20s every run.
-  # `opam lint` validates the package metadata with no extra packages.
+  # `opam lint` validates the package metadata with no extra packages, and the
+  # build-test job already fails if a required dependency is missing. No switch
+  # cache here: the metadata lint does not need the dependency tree.
   lint-opam:
     runs-on: ubuntu-latest
     steps:

@@ -3,6 +3,12 @@
 Append-only log of changes, newest on top. This first revision backfills the whole
 history (`63b33da` … present) since no changelog existed before.
 
+## 2026-07-26 — CI caches the opam switch to skip the dependency recompile
+- What: each build/lint job in `.github/workflows/main.yml` now caches its `_opam` switch via `actions/cache@v4`, keyed on `dune-project` + `gullwing.opam` (the fmt lane also on `.ocamlformat`), with a `restore-keys` fallback. On a warm cache `opam install . --deps-only` becomes "Nothing to do" instead of recompiling the Core/ppx tree.
+- Why: measured step timing showed `opam install` taking ~118s per lane — the dependency tree building from source. setup-ocaml deliberately does not cache `--deps-only` results (so it always picks up opam-repository updates), so the switch is cached here explicitly. Trade-off: cached dependencies do not pick up new opam-repository versions until the key changes; the key rehashes when deps change, and the `v1` version segment can be bumped to force a refresh. `lint-opam` has no switch cache — plain metadata lint needs no dependencies.
+- Affects: `.github/workflows/main.yml` only (CI configuration). Expected warm wall-clock ≈ 1m30s (was ~3m30s after parallelization, ~7m49s before).
+- By: Efremov Mark
+
 ## 2026-07-26 — CI parallelized; opam-dune-lint recompile removed
 - What: `.github/workflows/main.yml` split back into four parallel jobs (`build-test`, `lint-fmt`, `lint-doc`, `lint-opam`), each setting up OCaml from the same pinned/cached switch, so wall-clock is the slowest single lane instead of the sum of all steps. The `lint-opam` job no longer uses `ocaml/setup-ocaml/lint-opam@v3` — that action installs `opam-dune-lint`, which pins an older dune and forces a downgrade + recompile of ~67 packages (~3m20s per run, the single biggest step). Replaced with a plain `opam lint gullwing.opam`.
 - Why: measured step timing on the prior single-job run showed ~7m49s total dominated by `lint-opam` (200s) and the sequential lint chain; the compiler setup itself was already cached (~64s). Removing the recompile and hiding the lints under the build lane targets ~3.5m warm.

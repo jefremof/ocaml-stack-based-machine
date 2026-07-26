@@ -21,6 +21,12 @@ history (`63b33da` … present) since no changelog existed before.
 - Affects: `README.md` (docs only).
 - By: Efremov Mark
 
+## 2026-07-26 — README title and intro rewritten
+- What: replaced the English `# ocaml-stack-based-machine` heading and one-line description with a Russian title (`Стековая машина на OCaml`), a short motivation line, and a `Что такое стековая машина` intro that explains zero-operand instructions, instruction packing / code density, the return stack, and typical embedded / hard-real-time use. Gullwing is framed as the starting point (based on LaForest's work), not a fixed spec.
+- Why: the old header was a bare repo slug; the project is a personal exploration of stack-machine architecture and needed an intro that orients readers unfamiliar with stack machines.
+- Affects: `README.md` (docs only).
+- By: Efremov Mark
+
 ## 2026-07-26 — datapath and ISR diagrams in README
 - What: added `docs/datapath.svg` and `docs/isr.svg` — original redraws of the Gullwing block-level datapath and the instruction shift register — and a new `Архитектура` section in `README.md` tying them to `state` and `isr`/`word_to_batch`/`isr_shift`. Each transfer is drawn as its own single-direction line; DS/RS use the two-piece torn-stack symbol; both marked "адаптировано из … Fig. 6.1/6.2" per the attribution policy.
 - Why: the datapath and instruction fetch are the structure the code implements; diagrams make the register/stack layout legible.

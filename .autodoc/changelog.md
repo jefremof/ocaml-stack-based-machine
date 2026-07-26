@@ -15,6 +15,12 @@ history (`63b33da` … present) since no changelog existed before.
 - Affects: `.github/workflows/main.yml` only (CI configuration). Trade-off: `opam lint` validates package metadata but drops opam-dune-lint's dune/opam dependency-consistency check, which is low value here since the opam file is generated from `dune-project` (`generate_opam_files`).
 - By: Efremov Mark
 
+## 2026-07-26 — usage examples in README
+- What: added a `Примеры работы` section to `README.md` — assembler syntax (labels, opcodes, `+`=`PLUS`, `main` entry), assembling via `Pipeline.pipe` (`[0xDA9AD; 0x5; 0x3]`), running with a trace via `pipe_main` → `Util.fill_rest` → `Machine.step`, and `dune build` / `dune test`. Snippets and outputs were captured from a live `dune utop` run; the trace ends at `HLT` (the caught `Machine.Halt` prints nothing).
+- Why: the README had no runnable examples of how to write, assemble, and execute a program.
+- Affects: `README.md` (docs only).
+- By: Efremov Mark
+
 ## 2026-07-26 — instruction-format diagram in README
 - What: added `docs/instruction-format.svg` — an original redraw of the Gullwing instruction word layout (six 5-bit slots S0–S5 + 2 unused bits; data words occupy a full word), and embedded it in a new `Формат инструкций` section of `README.md` that ties it to `word_to_batch`. The SVG is our own drawing, marked "адаптировано из … Fig. 6.3", per the attribution policy.
 - Why: the packing of instructions into a machine word is the core idea the code implements; a diagram makes it legible.

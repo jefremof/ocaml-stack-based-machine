@@ -12,6 +12,79 @@ OCaml implementation of the simple stack-based machine
 
 Диаграмма перерисована по мотивам Fig. 6.3 из работы LaForest (см. «Источники и атрибуция»).
 
+## Примеры работы
+
+### Синтаксис ассемблера
+
+Программа — это текст: метки вида `name:`, инструкции через пробелы/переводы строк,
+аргументы (число или имя метки) идут сразу после опкода. Точка входа — метка `main`.
+`+` — синоним `PLUS`. Пример — треугольные числа (сумма `1 + 2 + … + N`) через рекурсию:
+
+```
+tri:
+    DUP JMP0 end DUP LIT -1 PLUS CALL tri PLUS
+end:
+    RET
+
+main:
+    LIT 5
+    CALL tri
+    HLT
+```
+
+### Ассемблирование в машинные слова
+
+```ocaml
+open Gullwing
+
+let program = "main:\n  LIT 5\n  LIT 3\n  +\n  HLT\n"
+
+(* Собрать исходник в слова памяти *)
+let words = Pipeline.pipe program
+(* words = [0xDA9AD; 0x5; 0x3]
+   первое слово пакует слоты [LIT; LIT; PLUS; HLT] (+ PC-филлеры),
+   дальше — два литерала: 5 и 3 *)
+```
+
+### Выполнение с трассировкой
+
+```ocaml
+open Gullwing
+
+let program = "main:\n  LIT 5\n  LIT 3\n  +\n  HLT\n"
+
+let () =
+  let encoded, pc = Pipeline.pipe_main program in    (* pc — адрес метки main *)
+  let mem = Util.fill_rest 12 0 encoded in           (* дополнить память нулями *)
+  let start = Machine.{ blank_state with mem; pc; mar = pc } in
+  try Machine.(start |> debug_state |> step) |> ignore
+  with Machine.Halt -> ()                             (* HLT поднимает Machine.Halt *)
+```
+
+`step` выполняет по одному опкоду, `debug_state` печатает состояние на каждом шаге.
+Результат остаётся на вершине стека (`top`). Хвост трассировки для примера выше:
+
+```
+LIT
+{ ... ds = [0];    ... top = 5; ... }
+LIT
+{ ... ds = [5; 0]; ... top = 3; ... }
+PLUS
+{ ... ds = [0];    ... top = 8; ... }
+HLT
+```
+
+Вывод заканчивается на `HLT`: `step` печатает опкод и поднимает `Machine.Halt`, который
+обработчик `with Machine.Halt -> ()` гасит молча. То есть `5 + 3 = 8` (значение в `top`).
+Треугольная программа выше по той же схеме оставляет `top = 15`.
+
+### Сборка и тесты проекта
+
+```bash
+dune build
+dune test
+```
+
 ## Источники и атрибуция
 
 Проект основан на архитектуре стековой машины **Gullwing**, описанной в дипломной работе:

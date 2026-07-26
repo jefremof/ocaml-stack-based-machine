@@ -27,6 +27,12 @@ history (`63b33da` … present) since no changelog existed before.
 - Affects: `README.md`, `docs/datapath.svg`, `docs/isr.svg` (docs only).
 - By: Efremov Mark
 
+## 2026-07-26 — execution trace + memory map in README
+- What: added `docs/mem-map.svg` (program memory decoded — instruction words as six opcode slots + `PC@` fillers, data words as value + role) and `docs/trace.svg` (full 37-step execution trace of the `1+2+3` triangle program, N=3, showing PC / ISR / DS / RS per step with change highlighting). Embedded both in a new `Как исполняется программа` section of `README.md`, placed before `Источники и атрибуция`. Both SVGs are generated from the real captured trace (`dune utop`), not hand-invented.
+- Why: gives a step-by-step picture of how the dual-stack machine runs a recursive program — the descent filling RS/DS and the ascent folding the sum.
+- Affects: `README.md`, `docs/mem-map.svg`, `docs/trace.svg` (docs only).
+- By: Efremov Mark
+
 ## 2026-07-26 — instruction-format diagram in README
 - What: added `docs/instruction-format.svg` — an original redraw of the Gullwing instruction word layout (six 5-bit slots S0–S5 + 2 unused bits; data words occupy a full word), and embedded it in a new `Формат инструкций` section of `README.md` that ties it to `word_to_batch`. The SVG is our own drawing, marked "адаптировано из … Fig. 6.3", per the attribution policy.
 - Why: the packing of instructions into a machine word is the core idea the code implements; a diagram makes it legible.

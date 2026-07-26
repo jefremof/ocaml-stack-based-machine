@@ -1,0 +1,1032 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1030 1710" font-family="'Segoe UI',Arial,sans-serif">
+<rect x="0" y="0" width="1030" height="1710" rx="10" fill="#ffffff" stroke="#d7dde3"/>
+<text x="30" y="34" font-size="17" font-weight="700" fill="#1a202c">Трассировка выполнения</text>
+<text x="30" y="55" font-size="11.5" fill="#5a6570">Программа «сумма 1+2+3» (N=3), все 37 шагов. Итог — на вершине DS: 6.</text>
+<rect x="40" y="74" width="16" height="12" rx="2.5" fill="#eaf2fb" stroke="#2b6cb0"/>
+<text x="62" y="84" font-size="10.5" fill="#5a6570">ISR — очередь батча (слева = сейчас)</text>
+<rect x="360" y="74" width="16" height="12" rx="2.5" fill="#e6f7ee" stroke="#2f855a"/>
+<text x="382" y="84" font-size="10.5" fill="#5a6570">DS — стек данных (слева = вершина top)</text>
+<rect x="640" y="74" width="16" height="12" rx="2.5" fill="#f3ecfb" stroke="#6b46c1"/>
+<text x="662" y="84" font-size="10.5" fill="#5a6570">RS — возвраты (слева = верх)</text>
+<rect x="850" y="74" width="16" height="12" rx="2.5" fill="#fff3bf" stroke="#f0b429"/>
+<text x="872" y="84" font-size="10.5" fill="#5a6570">жёлтым — изменения</text>
+<line x1="30" y1="98" x2="1000" y2="98" stroke="#d7dde3"/>
+<text x="44" y="136" font-size="11" font-weight="700" fill="#5a6570" text-anchor="middle">#</text>
+<text x="68" y="136" font-size="11" font-weight="700" fill="#5a6570" text-anchor="start">инструкция — что происходит</text>
+<text x="393" y="136" font-size="11" font-weight="700" fill="#5a6570" text-anchor="middle">PC</text>
+<text x="424" y="136" font-size="11" font-weight="700" fill="#5a6570" text-anchor="start">ISR</text>
+<text x="640" y="136" font-size="11" font-weight="700" fill="#5a6570" text-anchor="start">DS</text>
+<text x="856" y="136" font-size="11" font-weight="700" fill="#5a6570" text-anchor="start">RS</text>
+<line x1="30" y1="144" x2="1000" y2="144" stroke="#d7dde3"/>
+<text x="44" y="174" font-size="10.5" fill="#8a94a0" text-anchor="middle">0</text>
+<text x="68" y="166" font-size="11.5" font-weight="700" fill="#1a202c">—</text>
+<text x="68" y="181" font-size="9.6" fill="#5a6570">старт: PC на main (адр. 7); стеки пусты</text>
+<text x="393" y="174" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">7</text>
+<rect x="424" y="159" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1.9"/>
+<text x="440" y="173" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="458" y="159" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="474" y="173" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="492" y="159" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="508" y="173" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="526" y="159" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="542" y="173" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="560" y="159" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="576" y="173" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="594" y="159" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="610" y="173" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="159" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="173" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="30" y="190" width="970" height="40" fill="#fafbfc"/>
+<rect x="372" y="193" width="44" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="193" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="214" font-size="10.5" fill="#8a94a0" text-anchor="middle">1</text>
+<text x="68" y="206" font-size="11.5" font-weight="700" fill="#1a202c">PC@</text>
+<text x="68" y="221" font-size="9.6" fill="#5a6570">загрузил батч main из адр.7 в ISR; PC→8</text>
+<text x="393" y="214" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">8</text>
+<rect x="424" y="199" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="213" font-size="9.5" fill="#1a365d" text-anchor="middle">LIT</text>
+<rect x="458" y="199" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="474" y="213" font-size="9.5" fill="#1a365d" text-anchor="middle">CALL</text>
+<rect x="492" y="199" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="508" y="213" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="526" y="199" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="542" y="213" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="560" y="199" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="576" y="213" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="594" y="199" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="610" y="213" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="199" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="213" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="372" y="233" width="44" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="635" y="233" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="233" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="254" font-size="10.5" fill="#8a94a0" text-anchor="middle">2</text>
+<text x="68" y="246" font-size="11.5" font-weight="700" fill="#1a202c">LIT</text>
+<text x="68" y="261" font-size="9.6" fill="#5a6570">литерал 3 (адр.8) → top; старый top(0) на DS</text>
+<text x="393" y="254" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">9</text>
+<rect x="424" y="239" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="253" font-size="9.5" fill="#1a365d" text-anchor="middle">CALL</text>
+<rect x="458" y="239" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="474" y="253" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="492" y="239" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="508" y="253" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="526" y="239" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="542" y="253" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="560" y="239" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="576" y="253" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="239" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="253" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="674" y="239" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="253" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="30" y="270" width="970" height="40" fill="#fafbfc"/>
+<rect x="372" y="273" width="44" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="851" y="273" width="140" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="273" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="294" font-size="10.5" fill="#8a94a0" text-anchor="middle">3</text>
+<text x="68" y="286" font-size="11.5" font-weight="700" fill="#1a202c">CALL</text>
+<text x="68" y="301" font-size="9.6" fill="#5a6570">tri: возврат 10 → RS, прыжок; PC@ грузит tri (адр.0)</text>
+<text x="393" y="294" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">1</text>
+<rect x="424" y="279" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="293" font-size="9.5" fill="#1a365d" text-anchor="middle">DUP</text>
+<rect x="458" y="279" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="474" y="293" font-size="9.5" fill="#1a365d" text-anchor="middle">JMP0</text>
+<rect x="492" y="279" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="508" y="293" font-size="9.5" fill="#1a365d" text-anchor="middle">DUP</text>
+<rect x="526" y="279" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="542" y="293" font-size="9.5" fill="#1a365d" text-anchor="middle">LIT</text>
+<rect x="560" y="279" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="576" y="293" font-size="9.5" fill="#1a365d" text-anchor="middle">PLUS</text>
+<rect x="594" y="279" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="610" y="293" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="279" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="293" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="674" y="279" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="293" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="279" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="293" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="635" y="313" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="313" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="334" font-size="10.5" fill="#8a94a0" text-anchor="middle">4</text>
+<text x="68" y="326" font-size="11.5" font-weight="700" fill="#1a202c">DUP</text>
+<text x="68" y="341" font-size="9.6" fill="#5a6570">копия top(3) на DS — готовим проверку на 0</text>
+<text x="393" y="334" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">1</text>
+<rect x="424" y="319" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="333" font-size="9.5" fill="#1a365d" text-anchor="middle">JMP0</text>
+<rect x="458" y="319" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="474" y="333" font-size="9.5" fill="#1a365d" text-anchor="middle">DUP</text>
+<rect x="492" y="319" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="508" y="333" font-size="9.5" fill="#1a365d" text-anchor="middle">LIT</text>
+<rect x="526" y="319" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="542" y="333" font-size="9.5" fill="#1a365d" text-anchor="middle">PLUS</text>
+<rect x="560" y="319" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="576" y="333" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="319" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="333" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="674" y="319" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="333" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="708" y="319" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="333" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="319" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="333" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="30" y="350" width="970" height="40" fill="#fafbfc"/>
+<rect x="372" y="353" width="44" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="635" y="353" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="353" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="374" font-size="10.5" fill="#8a94a0" text-anchor="middle">5</text>
+<text x="68" y="366" font-size="11.5" font-weight="700" fill="#1a202c">JMP0</text>
+<text x="68" y="381" font-size="9.6" fill="#5a6570">3≠0 → не прыгаем; PC перескочил адрес end → 2</text>
+<text x="393" y="374" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">2</text>
+<rect x="424" y="359" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="373" font-size="9.5" fill="#1a365d" text-anchor="middle">DUP</text>
+<rect x="458" y="359" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="474" y="373" font-size="9.5" fill="#1a365d" text-anchor="middle">LIT</text>
+<rect x="492" y="359" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="508" y="373" font-size="9.5" fill="#1a365d" text-anchor="middle">PLUS</text>
+<rect x="526" y="359" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="542" y="373" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="359" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="373" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="674" y="359" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="373" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="359" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="373" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="635" y="393" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="393" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="414" font-size="10.5" fill="#8a94a0" text-anchor="middle">6</text>
+<text x="68" y="406" font-size="11.5" font-weight="700" fill="#1a202c">DUP</text>
+<text x="68" y="421" font-size="9.6" fill="#5a6570">снова копия top(3) на DS</text>
+<text x="393" y="414" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">2</text>
+<rect x="424" y="399" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="413" font-size="9.5" fill="#1a365d" text-anchor="middle">LIT</text>
+<rect x="458" y="399" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="474" y="413" font-size="9.5" fill="#1a365d" text-anchor="middle">PLUS</text>
+<rect x="492" y="399" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="508" y="413" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="399" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="413" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="674" y="399" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="413" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="708" y="399" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="413" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="399" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="413" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="30" y="430" width="970" height="40" fill="#fafbfc"/>
+<rect x="372" y="433" width="44" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="635" y="433" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="433" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="454" font-size="10.5" fill="#8a94a0" text-anchor="middle">7</text>
+<text x="68" y="446" font-size="11.5" font-weight="700" fill="#1a202c">LIT</text>
+<text x="68" y="461" font-size="9.6" fill="#5a6570">литерал −1 (адр.2) → top</text>
+<text x="393" y="454" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">3</text>
+<rect x="424" y="439" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="453" font-size="9.5" fill="#1a365d" text-anchor="middle">PLUS</text>
+<rect x="458" y="439" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="474" y="453" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="439" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="453" font-size="9.5" fill="#1b4332" text-anchor="middle">-1</text>
+<rect x="674" y="439" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="453" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="708" y="439" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="453" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="439" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="453" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="635" y="473" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="473" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="494" font-size="10.5" fill="#8a94a0" text-anchor="middle">8</text>
+<text x="68" y="486" font-size="11.5" font-weight="700" fill="#1a202c">PLUS</text>
+<text x="68" y="501" font-size="9.6" fill="#5a6570">top(−1)+DS(3)=2 — аргумент уменьшен 3→2</text>
+<text x="393" y="494" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">3</text>
+<rect x="424" y="479" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1.9"/>
+<text x="440" y="493" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="479" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="493" font-size="9.5" fill="#1b4332" text-anchor="middle">2</text>
+<rect x="674" y="479" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="493" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="479" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="493" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="30" y="510" width="970" height="40" fill="#fafbfc"/>
+<rect x="372" y="513" width="44" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="513" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="534" font-size="10.5" fill="#8a94a0" text-anchor="middle">9</text>
+<text x="68" y="526" font-size="11.5" font-weight="700" fill="#1a202c">PC@</text>
+<text x="68" y="541" font-size="9.6" fill="#5a6570">дозагрузил слово tri (адр.3 = CALL); PC→4</text>
+<text x="393" y="534" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">4</text>
+<rect x="424" y="519" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="533" font-size="9.5" fill="#1a365d" text-anchor="middle">CALL</text>
+<rect x="458" y="519" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="474" y="533" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="492" y="519" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="508" y="533" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="526" y="519" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="542" y="533" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="560" y="519" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="576" y="533" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="594" y="519" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="610" y="533" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="519" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="533" font-size="9.5" fill="#1b4332" text-anchor="middle">2</text>
+<rect x="674" y="519" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="533" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="519" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="533" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="372" y="553" width="44" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="851" y="553" width="140" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="553" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="574" font-size="10.5" fill="#8a94a0" text-anchor="middle">10</text>
+<text x="68" y="566" font-size="11.5" font-weight="700" fill="#1a202c">CALL</text>
+<text x="68" y="581" font-size="9.6" fill="#5a6570">tri(2): возврат 5 → RS (глубина 2)</text>
+<text x="393" y="574" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">1</text>
+<rect x="424" y="559" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="573" font-size="9.5" fill="#1a365d" text-anchor="middle">DUP</text>
+<rect x="458" y="559" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="474" y="573" font-size="9.5" fill="#1a365d" text-anchor="middle">JMP0</text>
+<rect x="492" y="559" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="508" y="573" font-size="9.5" fill="#1a365d" text-anchor="middle">DUP</text>
+<rect x="526" y="559" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="542" y="573" font-size="9.5" fill="#1a365d" text-anchor="middle">LIT</text>
+<rect x="560" y="559" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="576" y="573" font-size="9.5" fill="#1a365d" text-anchor="middle">PLUS</text>
+<rect x="594" y="559" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="610" y="573" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="559" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="573" font-size="9.5" fill="#1b4332" text-anchor="middle">2</text>
+<rect x="674" y="559" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="573" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="708" y="559" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="573" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="559" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="573" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="890" y="559" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="906" y="573" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="30" y="590" width="970" height="40" fill="#fafbfc"/>
+<rect x="635" y="593" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="593" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="614" font-size="10.5" fill="#8a94a0" text-anchor="middle">11</text>
+<text x="68" y="606" font-size="11.5" font-weight="700" fill="#1a202c">DUP</text>
+<text x="68" y="621" font-size="9.6" fill="#5a6570">копия top(2) на DS</text>
+<text x="393" y="614" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">1</text>
+<rect x="424" y="599" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="613" font-size="9.5" fill="#1a365d" text-anchor="middle">JMP0</text>
+<rect x="458" y="599" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="474" y="613" font-size="9.5" fill="#1a365d" text-anchor="middle">DUP</text>
+<rect x="492" y="599" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="508" y="613" font-size="9.5" fill="#1a365d" text-anchor="middle">LIT</text>
+<rect x="526" y="599" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="542" y="613" font-size="9.5" fill="#1a365d" text-anchor="middle">PLUS</text>
+<rect x="560" y="599" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="576" y="613" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="599" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="613" font-size="9.5" fill="#1b4332" text-anchor="middle">2</text>
+<rect x="674" y="599" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="613" font-size="9.5" fill="#1b4332" text-anchor="middle">2</text>
+<rect x="708" y="599" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="613" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="742" y="599" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="758" y="613" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="599" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="613" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="890" y="599" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="906" y="613" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="372" y="633" width="44" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="635" y="633" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="633" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="654" font-size="10.5" fill="#8a94a0" text-anchor="middle">12</text>
+<text x="68" y="646" font-size="11.5" font-weight="700" fill="#1a202c">JMP0</text>
+<text x="68" y="661" font-size="9.6" fill="#5a6570">2≠0 → не прыгаем; PC→2</text>
+<text x="393" y="654" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">2</text>
+<rect x="424" y="639" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="653" font-size="9.5" fill="#1a365d" text-anchor="middle">DUP</text>
+<rect x="458" y="639" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="474" y="653" font-size="9.5" fill="#1a365d" text-anchor="middle">LIT</text>
+<rect x="492" y="639" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="508" y="653" font-size="9.5" fill="#1a365d" text-anchor="middle">PLUS</text>
+<rect x="526" y="639" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="542" y="653" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="639" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="653" font-size="9.5" fill="#1b4332" text-anchor="middle">2</text>
+<rect x="674" y="639" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="653" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="708" y="639" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="653" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="639" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="653" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="890" y="639" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="906" y="653" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="30" y="670" width="970" height="40" fill="#fafbfc"/>
+<rect x="635" y="673" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="673" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="694" font-size="10.5" fill="#8a94a0" text-anchor="middle">13</text>
+<text x="68" y="686" font-size="11.5" font-weight="700" fill="#1a202c">DUP</text>
+<text x="68" y="701" font-size="9.6" fill="#5a6570">снова копия top(2) на DS</text>
+<text x="393" y="694" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">2</text>
+<rect x="424" y="679" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="693" font-size="9.5" fill="#1a365d" text-anchor="middle">LIT</text>
+<rect x="458" y="679" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="474" y="693" font-size="9.5" fill="#1a365d" text-anchor="middle">PLUS</text>
+<rect x="492" y="679" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="508" y="693" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="679" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="693" font-size="9.5" fill="#1b4332" text-anchor="middle">2</text>
+<rect x="674" y="679" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="693" font-size="9.5" fill="#1b4332" text-anchor="middle">2</text>
+<rect x="708" y="679" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="693" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="742" y="679" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="758" y="693" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="679" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="693" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="890" y="679" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="906" y="693" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="372" y="713" width="44" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="635" y="713" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="713" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="734" font-size="10.5" fill="#8a94a0" text-anchor="middle">14</text>
+<text x="68" y="726" font-size="11.5" font-weight="700" fill="#1a202c">LIT</text>
+<text x="68" y="741" font-size="9.6" fill="#5a6570">литерал −1 → top</text>
+<text x="393" y="734" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">3</text>
+<rect x="424" y="719" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="733" font-size="9.5" fill="#1a365d" text-anchor="middle">PLUS</text>
+<rect x="458" y="719" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="474" y="733" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="719" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="733" font-size="9.5" fill="#1b4332" text-anchor="middle">-1</text>
+<rect x="674" y="719" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="733" font-size="9.5" fill="#1b4332" text-anchor="middle">2</text>
+<rect x="708" y="719" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="733" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="742" y="719" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="758" y="733" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="719" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="733" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="890" y="719" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="906" y="733" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="30" y="750" width="970" height="40" fill="#fafbfc"/>
+<rect x="635" y="753" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="753" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="774" font-size="10.5" fill="#8a94a0" text-anchor="middle">15</text>
+<text x="68" y="766" font-size="11.5" font-weight="700" fill="#1a202c">PLUS</text>
+<text x="68" y="781" font-size="9.6" fill="#5a6570">top(−1)+DS(2)=1 — аргумент 2→1</text>
+<text x="393" y="774" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">3</text>
+<rect x="424" y="759" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1.9"/>
+<text x="440" y="773" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="759" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="773" font-size="9.5" fill="#1b4332" text-anchor="middle">1</text>
+<rect x="674" y="759" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="773" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="708" y="759" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="773" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="759" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="773" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="890" y="759" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="906" y="773" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="372" y="793" width="44" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="793" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="814" font-size="10.5" fill="#8a94a0" text-anchor="middle">16</text>
+<text x="68" y="806" font-size="11.5" font-weight="700" fill="#1a202c">PC@</text>
+<text x="68" y="821" font-size="9.6" fill="#5a6570">дозагрузил CALL (адр.3); PC→4</text>
+<text x="393" y="814" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">4</text>
+<rect x="424" y="799" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="813" font-size="9.5" fill="#1a365d" text-anchor="middle">CALL</text>
+<rect x="458" y="799" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="474" y="813" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="492" y="799" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="508" y="813" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="526" y="799" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="542" y="813" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="560" y="799" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="576" y="813" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="594" y="799" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="610" y="813" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="799" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="813" font-size="9.5" fill="#1b4332" text-anchor="middle">1</text>
+<rect x="674" y="799" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="813" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="708" y="799" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="813" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="799" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="813" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="890" y="799" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="906" y="813" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="30" y="830" width="970" height="40" fill="#fafbfc"/>
+<rect x="372" y="833" width="44" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="851" y="833" width="140" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="833" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="854" font-size="10.5" fill="#8a94a0" text-anchor="middle">17</text>
+<text x="68" y="846" font-size="11.5" font-weight="700" fill="#1a202c">CALL</text>
+<text x="68" y="861" font-size="9.6" fill="#5a6570">tri(1): возврат 5 → RS (глубина 3)</text>
+<text x="393" y="854" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">1</text>
+<rect x="424" y="839" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="853" font-size="9.5" fill="#1a365d" text-anchor="middle">DUP</text>
+<rect x="458" y="839" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="474" y="853" font-size="9.5" fill="#1a365d" text-anchor="middle">JMP0</text>
+<rect x="492" y="839" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="508" y="853" font-size="9.5" fill="#1a365d" text-anchor="middle">DUP</text>
+<rect x="526" y="839" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="542" y="853" font-size="9.5" fill="#1a365d" text-anchor="middle">LIT</text>
+<rect x="560" y="839" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="576" y="853" font-size="9.5" fill="#1a365d" text-anchor="middle">PLUS</text>
+<rect x="594" y="839" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="610" y="853" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="839" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="853" font-size="9.5" fill="#1b4332" text-anchor="middle">1</text>
+<rect x="674" y="839" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="853" font-size="9.5" fill="#1b4332" text-anchor="middle">2</text>
+<rect x="708" y="839" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="853" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="742" y="839" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="758" y="853" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="839" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="853" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="890" y="839" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="906" y="853" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="924" y="839" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="940" y="853" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="635" y="873" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="873" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="894" font-size="10.5" fill="#8a94a0" text-anchor="middle">18</text>
+<text x="68" y="886" font-size="11.5" font-weight="700" fill="#1a202c">DUP</text>
+<text x="68" y="901" font-size="9.6" fill="#5a6570">копия top(1) на DS</text>
+<text x="393" y="894" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">1</text>
+<rect x="424" y="879" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="893" font-size="9.5" fill="#1a365d" text-anchor="middle">JMP0</text>
+<rect x="458" y="879" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="474" y="893" font-size="9.5" fill="#1a365d" text-anchor="middle">DUP</text>
+<rect x="492" y="879" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="508" y="893" font-size="9.5" fill="#1a365d" text-anchor="middle">LIT</text>
+<rect x="526" y="879" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="542" y="893" font-size="9.5" fill="#1a365d" text-anchor="middle">PLUS</text>
+<rect x="560" y="879" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="576" y="893" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="879" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="893" font-size="9.5" fill="#1b4332" text-anchor="middle">1</text>
+<rect x="674" y="879" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="893" font-size="9.5" fill="#1b4332" text-anchor="middle">1</text>
+<rect x="708" y="879" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="893" font-size="9.5" fill="#1b4332" text-anchor="middle">2</text>
+<rect x="742" y="879" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="758" y="893" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="776" y="879" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="792" y="893" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="879" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="893" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="890" y="879" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="906" y="893" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="924" y="879" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="940" y="893" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="30" y="910" width="970" height="40" fill="#fafbfc"/>
+<rect x="372" y="913" width="44" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="635" y="913" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="913" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="934" font-size="10.5" fill="#8a94a0" text-anchor="middle">19</text>
+<text x="68" y="926" font-size="11.5" font-weight="700" fill="#1a202c">JMP0</text>
+<text x="68" y="941" font-size="9.6" fill="#5a6570">1≠0 → не прыгаем; PC→2</text>
+<text x="393" y="934" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">2</text>
+<rect x="424" y="919" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="933" font-size="9.5" fill="#1a365d" text-anchor="middle">DUP</text>
+<rect x="458" y="919" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="474" y="933" font-size="9.5" fill="#1a365d" text-anchor="middle">LIT</text>
+<rect x="492" y="919" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="508" y="933" font-size="9.5" fill="#1a365d" text-anchor="middle">PLUS</text>
+<rect x="526" y="919" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="542" y="933" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="919" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="933" font-size="9.5" fill="#1b4332" text-anchor="middle">1</text>
+<rect x="674" y="919" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="933" font-size="9.5" fill="#1b4332" text-anchor="middle">2</text>
+<rect x="708" y="919" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="933" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="742" y="919" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="758" y="933" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="919" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="933" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="890" y="919" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="906" y="933" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="924" y="919" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="940" y="933" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="635" y="953" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="953" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="974" font-size="10.5" fill="#8a94a0" text-anchor="middle">20</text>
+<text x="68" y="966" font-size="11.5" font-weight="700" fill="#1a202c">DUP</text>
+<text x="68" y="981" font-size="9.6" fill="#5a6570">снова копия top(1) на DS</text>
+<text x="393" y="974" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">2</text>
+<rect x="424" y="959" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="973" font-size="9.5" fill="#1a365d" text-anchor="middle">LIT</text>
+<rect x="458" y="959" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="474" y="973" font-size="9.5" fill="#1a365d" text-anchor="middle">PLUS</text>
+<rect x="492" y="959" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="508" y="973" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="959" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="973" font-size="9.5" fill="#1b4332" text-anchor="middle">1</text>
+<rect x="674" y="959" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="973" font-size="9.5" fill="#1b4332" text-anchor="middle">1</text>
+<rect x="708" y="959" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="973" font-size="9.5" fill="#1b4332" text-anchor="middle">2</text>
+<rect x="742" y="959" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="758" y="973" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="776" y="959" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="792" y="973" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="959" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="973" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="890" y="959" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="906" y="973" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="924" y="959" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="940" y="973" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="30" y="990" width="970" height="40" fill="#fafbfc"/>
+<rect x="372" y="993" width="44" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="635" y="993" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="993" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="1014" font-size="10.5" fill="#8a94a0" text-anchor="middle">21</text>
+<text x="68" y="1006" font-size="11.5" font-weight="700" fill="#1a202c">LIT</text>
+<text x="68" y="1021" font-size="9.6" fill="#5a6570">литерал −1 → top</text>
+<text x="393" y="1014" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">3</text>
+<rect x="424" y="999" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="1013" font-size="9.5" fill="#1a365d" text-anchor="middle">PLUS</text>
+<rect x="458" y="999" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="474" y="1013" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="999" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="1013" font-size="9.5" fill="#1b4332" text-anchor="middle">-1</text>
+<rect x="674" y="999" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="1013" font-size="9.5" fill="#1b4332" text-anchor="middle">1</text>
+<rect x="708" y="999" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="1013" font-size="9.5" fill="#1b4332" text-anchor="middle">2</text>
+<rect x="742" y="999" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="758" y="1013" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="776" y="999" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="792" y="1013" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="999" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="1013" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="890" y="999" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="906" y="1013" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="924" y="999" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="940" y="1013" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="635" y="1033" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="1033" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="1054" font-size="10.5" fill="#8a94a0" text-anchor="middle">22</text>
+<text x="68" y="1046" font-size="11.5" font-weight="700" fill="#1a202c">PLUS</text>
+<text x="68" y="1061" font-size="9.6" fill="#5a6570">top(−1)+DS(1)=0 — аргумент 1→0 (дошли до базы)</text>
+<text x="393" y="1054" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">3</text>
+<rect x="424" y="1039" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1.9"/>
+<text x="440" y="1053" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="1039" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="1053" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="674" y="1039" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="1053" font-size="9.5" fill="#1b4332" text-anchor="middle">2</text>
+<rect x="708" y="1039" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="1053" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="742" y="1039" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="758" y="1053" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="1039" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="1053" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="890" y="1039" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="906" y="1053" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="924" y="1039" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="940" y="1053" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="30" y="1070" width="970" height="40" fill="#fafbfc"/>
+<rect x="372" y="1073" width="44" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="1073" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="1094" font-size="10.5" fill="#8a94a0" text-anchor="middle">23</text>
+<text x="68" y="1086" font-size="11.5" font-weight="700" fill="#1a202c">PC@</text>
+<text x="68" y="1101" font-size="9.6" fill="#5a6570">дозагрузил CALL (адр.3); PC→4</text>
+<text x="393" y="1094" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">4</text>
+<rect x="424" y="1079" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="1093" font-size="9.5" fill="#1a365d" text-anchor="middle">CALL</text>
+<rect x="458" y="1079" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="474" y="1093" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="492" y="1079" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="508" y="1093" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="526" y="1079" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="542" y="1093" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="560" y="1079" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="576" y="1093" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="594" y="1079" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="610" y="1093" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="1079" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="1093" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="674" y="1079" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="1093" font-size="9.5" fill="#1b4332" text-anchor="middle">2</text>
+<rect x="708" y="1079" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="1093" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="742" y="1079" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="758" y="1093" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="1079" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="1093" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="890" y="1079" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="906" y="1093" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="924" y="1079" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="940" y="1093" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="372" y="1113" width="44" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="851" y="1113" width="140" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="1113" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="1134" font-size="10.5" fill="#8a94a0" text-anchor="middle">24</text>
+<text x="68" y="1126" font-size="11.5" font-weight="700" fill="#1a202c">CALL</text>
+<text x="68" y="1141" font-size="9.6" fill="#5a6570">tri(0): возврат 5 → RS (глубина 4)</text>
+<text x="393" y="1134" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">1</text>
+<rect x="424" y="1119" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="1133" font-size="9.5" fill="#1a365d" text-anchor="middle">DUP</text>
+<rect x="458" y="1119" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="474" y="1133" font-size="9.5" fill="#1a365d" text-anchor="middle">JMP0</text>
+<rect x="492" y="1119" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="508" y="1133" font-size="9.5" fill="#1a365d" text-anchor="middle">DUP</text>
+<rect x="526" y="1119" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="542" y="1133" font-size="9.5" fill="#1a365d" text-anchor="middle">LIT</text>
+<rect x="560" y="1119" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="576" y="1133" font-size="9.5" fill="#1a365d" text-anchor="middle">PLUS</text>
+<rect x="594" y="1119" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="610" y="1133" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="1119" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="1133" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="674" y="1119" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="1133" font-size="9.5" fill="#1b4332" text-anchor="middle">1</text>
+<rect x="708" y="1119" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="1133" font-size="9.5" fill="#1b4332" text-anchor="middle">2</text>
+<rect x="742" y="1119" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="758" y="1133" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="776" y="1119" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="792" y="1133" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="1119" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="1133" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="890" y="1119" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="906" y="1133" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="924" y="1119" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="940" y="1133" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="958" y="1119" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="974" y="1133" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="30" y="1150" width="970" height="40" fill="#fafbfc"/>
+<rect x="635" y="1153" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="1153" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="1174" font-size="10.5" fill="#8a94a0" text-anchor="middle">25</text>
+<text x="68" y="1166" font-size="11.5" font-weight="700" fill="#1a202c">DUP</text>
+<text x="68" y="1181" font-size="9.6" fill="#5a6570">копия top(0) на DS</text>
+<text x="393" y="1174" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">1</text>
+<rect x="424" y="1159" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="1173" font-size="9.5" fill="#1a365d" text-anchor="middle">JMP0</text>
+<rect x="458" y="1159" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="474" y="1173" font-size="9.5" fill="#1a365d" text-anchor="middle">DUP</text>
+<rect x="492" y="1159" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="508" y="1173" font-size="9.5" fill="#1a365d" text-anchor="middle">LIT</text>
+<rect x="526" y="1159" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1"/>
+<text x="542" y="1173" font-size="9.5" fill="#1a365d" text-anchor="middle">PLUS</text>
+<rect x="560" y="1159" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="576" y="1173" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="1159" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="1173" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="674" y="1159" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="1173" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="708" y="1159" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="1173" font-size="9.5" fill="#1b4332" text-anchor="middle">1</text>
+<rect x="742" y="1159" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="758" y="1173" font-size="9.5" fill="#1b4332" text-anchor="middle">2</text>
+<rect x="776" y="1159" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="792" y="1173" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="810" y="1159" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="826" y="1173" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="1159" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="1173" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="890" y="1159" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="906" y="1173" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="924" y="1159" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="940" y="1173" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="958" y="1159" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="974" y="1173" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="372" y="1193" width="44" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="635" y="1193" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="1193" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="1214" font-size="10.5" fill="#8a94a0" text-anchor="middle">26</text>
+<text x="68" y="1206" font-size="11.5" font-weight="700" fill="#1a202c">JMP0</text>
+<text x="68" y="1221" font-size="9.6" fill="#5a6570">0=0 → ПРЫЖОК на end (адр.6); PC@ грузит RET</text>
+<text x="393" y="1214" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">7</text>
+<rect x="424" y="1199" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="1213" font-size="9.5" fill="#1a365d" text-anchor="middle">RET</text>
+<rect x="458" y="1199" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="474" y="1213" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="492" y="1199" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="508" y="1213" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="526" y="1199" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="542" y="1213" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="560" y="1199" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="576" y="1213" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="594" y="1199" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="610" y="1213" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="1199" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="1213" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="674" y="1199" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="1213" font-size="9.5" fill="#1b4332" text-anchor="middle">1</text>
+<rect x="708" y="1199" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="1213" font-size="9.5" fill="#1b4332" text-anchor="middle">2</text>
+<rect x="742" y="1199" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="758" y="1213" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="776" y="1199" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="792" y="1213" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="1199" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="1213" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="890" y="1199" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="906" y="1213" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="924" y="1199" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="940" y="1213" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="958" y="1199" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="974" y="1213" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="30" y="1230" width="970" height="40" fill="#fafbfc"/>
+<rect x="372" y="1233" width="44" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="851" y="1233" width="140" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="1233" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="1254" font-size="10.5" fill="#8a94a0" text-anchor="middle">27</text>
+<text x="68" y="1246" font-size="11.5" font-weight="700" fill="#1a202c">RET</text>
+<text x="68" y="1261" font-size="9.6" fill="#5a6570">возврат по RS(5)→адр.5; PC@ грузит финальный + ; RS↓</text>
+<text x="393" y="1254" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">6</text>
+<rect x="424" y="1239" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="1253" font-size="9.5" fill="#1a365d" text-anchor="middle">PLUS</text>
+<rect x="458" y="1239" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="474" y="1253" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="492" y="1239" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="508" y="1253" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="526" y="1239" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="542" y="1253" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="560" y="1239" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="576" y="1253" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="594" y="1239" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="610" y="1253" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="1239" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="1253" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="674" y="1239" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="1253" font-size="9.5" fill="#1b4332" text-anchor="middle">1</text>
+<rect x="708" y="1239" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="1253" font-size="9.5" fill="#1b4332" text-anchor="middle">2</text>
+<rect x="742" y="1239" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="758" y="1253" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="776" y="1239" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="792" y="1253" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="1239" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="1253" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="890" y="1239" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="906" y="1253" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="924" y="1239" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="940" y="1253" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="635" y="1273" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="1273" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="1294" font-size="10.5" fill="#8a94a0" text-anchor="middle">28</text>
+<text x="68" y="1286" font-size="11.5" font-weight="700" fill="#1a202c">PLUS</text>
+<text x="68" y="1301" font-size="9.6" fill="#5a6570">свёртка: top(0)+DS(1)=1</text>
+<text x="393" y="1294" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">6</text>
+<rect x="424" y="1279" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1.9"/>
+<text x="440" y="1293" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="458" y="1279" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="474" y="1293" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="492" y="1279" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="508" y="1293" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="526" y="1279" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="542" y="1293" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="560" y="1279" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="576" y="1293" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="1279" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="1293" font-size="9.5" fill="#1b4332" text-anchor="middle">1</text>
+<rect x="674" y="1279" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="1293" font-size="9.5" fill="#1b4332" text-anchor="middle">2</text>
+<rect x="708" y="1279" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="1293" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="742" y="1279" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="758" y="1293" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="1279" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="1293" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="890" y="1279" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="906" y="1293" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="924" y="1279" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="940" y="1293" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="30" y="1310" width="970" height="40" fill="#fafbfc"/>
+<rect x="372" y="1313" width="44" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="1313" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="1334" font-size="10.5" fill="#8a94a0" text-anchor="middle">29</text>
+<text x="68" y="1326" font-size="11.5" font-weight="700" fill="#1a202c">PC@</text>
+<text x="68" y="1341" font-size="9.6" fill="#5a6570">дозагрузил end:RET (адр.6); PC→7</text>
+<text x="393" y="1334" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">7</text>
+<rect x="424" y="1319" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="1333" font-size="9.5" fill="#1a365d" text-anchor="middle">RET</text>
+<rect x="458" y="1319" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="474" y="1333" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="492" y="1319" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="508" y="1333" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="526" y="1319" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="542" y="1333" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="560" y="1319" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="576" y="1333" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="594" y="1319" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="610" y="1333" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="1319" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="1333" font-size="9.5" fill="#1b4332" text-anchor="middle">1</text>
+<rect x="674" y="1319" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="1333" font-size="9.5" fill="#1b4332" text-anchor="middle">2</text>
+<rect x="708" y="1319" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="1333" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="742" y="1319" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="758" y="1333" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="1319" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="1333" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="890" y="1319" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="906" y="1333" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="924" y="1319" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="940" y="1333" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="372" y="1353" width="44" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="851" y="1353" width="140" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="1353" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="1374" font-size="10.5" fill="#8a94a0" text-anchor="middle">30</text>
+<text x="68" y="1366" font-size="11.5" font-weight="700" fill="#1a202c">RET</text>
+<text x="68" y="1381" font-size="9.6" fill="#5a6570">возврат по RS(5); RS↓</text>
+<text x="393" y="1374" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">6</text>
+<rect x="424" y="1359" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="1373" font-size="9.5" fill="#1a365d" text-anchor="middle">PLUS</text>
+<rect x="458" y="1359" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="474" y="1373" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="492" y="1359" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="508" y="1373" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="526" y="1359" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="542" y="1373" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="560" y="1359" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="576" y="1373" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="594" y="1359" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="610" y="1373" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="1359" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="1373" font-size="9.5" fill="#1b4332" text-anchor="middle">1</text>
+<rect x="674" y="1359" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="1373" font-size="9.5" fill="#1b4332" text-anchor="middle">2</text>
+<rect x="708" y="1359" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="1373" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="742" y="1359" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="758" y="1373" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="1359" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="1373" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="890" y="1359" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="906" y="1373" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="30" y="1390" width="970" height="40" fill="#fafbfc"/>
+<rect x="635" y="1393" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="1393" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="1414" font-size="10.5" fill="#8a94a0" text-anchor="middle">31</text>
+<text x="68" y="1406" font-size="11.5" font-weight="700" fill="#1a202c">PLUS</text>
+<text x="68" y="1421" font-size="9.6" fill="#5a6570">свёртка: top(1)+DS(2)=3</text>
+<text x="393" y="1414" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">6</text>
+<rect x="424" y="1399" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1.9"/>
+<text x="440" y="1413" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="458" y="1399" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="474" y="1413" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="492" y="1399" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="508" y="1413" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="526" y="1399" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="542" y="1413" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="560" y="1399" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="576" y="1413" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="1399" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="1413" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="674" y="1399" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="1413" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="708" y="1399" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="1413" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="1399" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="1413" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="890" y="1399" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="906" y="1413" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="372" y="1433" width="44" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="1433" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="1454" font-size="10.5" fill="#8a94a0" text-anchor="middle">32</text>
+<text x="68" y="1446" font-size="11.5" font-weight="700" fill="#1a202c">PC@</text>
+<text x="68" y="1461" font-size="9.6" fill="#5a6570">дозагрузил RET; PC→7</text>
+<text x="393" y="1454" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">7</text>
+<rect x="424" y="1439" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="1453" font-size="9.5" fill="#1a365d" text-anchor="middle">RET</text>
+<rect x="458" y="1439" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="474" y="1453" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="492" y="1439" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="508" y="1453" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="526" y="1439" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="542" y="1453" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="560" y="1439" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="576" y="1453" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="594" y="1439" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="610" y="1453" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="1439" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="1453" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="674" y="1439" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="1453" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="708" y="1439" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="1453" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="1439" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="1453" font-size="9.5" fill="#44337a" text-anchor="middle">5</text>
+<rect x="890" y="1439" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1"/>
+<text x="906" y="1453" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="30" y="1470" width="970" height="40" fill="#fafbfc"/>
+<rect x="372" y="1473" width="44" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="851" y="1473" width="140" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="1473" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="1494" font-size="10.5" fill="#8a94a0" text-anchor="middle">33</text>
+<text x="68" y="1486" font-size="11.5" font-weight="700" fill="#1a202c">RET</text>
+<text x="68" y="1501" font-size="9.6" fill="#5a6570">возврат по RS(5); RS↓</text>
+<text x="393" y="1494" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">6</text>
+<rect x="424" y="1479" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="1493" font-size="9.5" fill="#1a365d" text-anchor="middle">PLUS</text>
+<rect x="458" y="1479" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="474" y="1493" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="492" y="1479" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="508" y="1493" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="526" y="1479" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="542" y="1493" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="560" y="1479" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="576" y="1493" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="594" y="1479" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="610" y="1493" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="1479" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="1493" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="674" y="1479" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="1493" font-size="9.5" fill="#1b4332" text-anchor="middle">3</text>
+<rect x="708" y="1479" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="724" y="1493" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="1479" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="1493" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="635" y="1513" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="1513" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="1534" font-size="10.5" fill="#8a94a0" text-anchor="middle">34</text>
+<text x="68" y="1526" font-size="11.5" font-weight="700" fill="#1a202c">PLUS</text>
+<text x="68" y="1541" font-size="9.6" fill="#5a6570">свёртка: top(3)+DS(3)=6</text>
+<text x="393" y="1534" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">6</text>
+<rect x="424" y="1519" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1.9"/>
+<text x="440" y="1533" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="458" y="1519" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="474" y="1533" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="492" y="1519" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="508" y="1533" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="526" y="1519" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="542" y="1533" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="560" y="1519" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="576" y="1533" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="1519" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="1533" font-size="9.5" fill="#1b4332" text-anchor="middle">6</text>
+<rect x="674" y="1519" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="1533" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="1519" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="1533" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="30" y="1550" width="970" height="40" fill="#fafbfc"/>
+<rect x="372" y="1553" width="44" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="1553" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="1574" font-size="10.5" fill="#8a94a0" text-anchor="middle">35</text>
+<text x="68" y="1566" font-size="11.5" font-weight="700" fill="#1a202c">PC@</text>
+<text x="68" y="1581" font-size="9.6" fill="#5a6570">дозагрузил RET; PC→7</text>
+<text x="393" y="1574" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">7</text>
+<rect x="424" y="1559" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="1573" font-size="9.5" fill="#1a365d" text-anchor="middle">RET</text>
+<rect x="458" y="1559" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="474" y="1573" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="492" y="1559" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="508" y="1573" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="526" y="1559" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="542" y="1573" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="560" y="1559" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="576" y="1573" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="594" y="1559" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="610" y="1573" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="1559" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="1573" font-size="9.5" fill="#1b4332" text-anchor="middle">6</text>
+<rect x="674" y="1559" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="1573" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="856" y="1559" width="32" height="22" rx="3" fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.9"/>
+<text x="872" y="1573" font-size="9.5" fill="#44337a" text-anchor="middle">10</text>
+<rect x="372" y="1593" width="44" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="851" y="1593" width="140" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<rect x="419" y="1593" width="208" height="34" rx="4" fill="#fff3bf" opacity="0.55"/>
+<text x="44" y="1614" font-size="10.5" fill="#8a94a0" text-anchor="middle">36</text>
+<text x="68" y="1606" font-size="11.5" font-weight="700" fill="#1a202c">RET</text>
+<text x="68" y="1621" font-size="9.6" fill="#5a6570">возврат в main по RS(10); PC@ грузит HLT; RS пуст</text>
+<text x="393" y="1614" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">11</text>
+<rect x="424" y="1599" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="1613" font-size="9.5" fill="#1a365d" text-anchor="middle">HLT</text>
+<rect x="458" y="1599" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="474" y="1613" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="492" y="1599" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="508" y="1613" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="526" y="1599" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="542" y="1613" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="560" y="1599" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="576" y="1613" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="594" y="1599" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="610" y="1613" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="1599" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="1613" font-size="9.5" fill="#1b4332" text-anchor="middle">6</text>
+<rect x="674" y="1599" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="1613" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+<rect x="30" y="1630" width="970" height="40" fill="#fafbfc"/>
+<text x="44" y="1654" font-size="10.5" fill="#8a94a0" text-anchor="middle">37</text>
+<text x="68" y="1646" font-size="11.5" font-weight="700" fill="#1a202c">HLT</text>
+<text x="68" y="1661" font-size="9.6" fill="#5a6570">стоп. Результат = top = 6 = 1+2+3</text>
+<text x="393" y="1654" font-size="11" font-weight="700" fill="#1a202c" text-anchor="middle">11</text>
+<rect x="424" y="1639" width="32" height="22" rx="3" fill="#eaf2fb" stroke="#2b6cb0" stroke-width="1.9"/>
+<text x="440" y="1653" font-size="9.5" fill="#1a365d" text-anchor="middle">HLT</text>
+<rect x="458" y="1639" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="474" y="1653" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="492" y="1639" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="508" y="1653" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="526" y="1639" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="542" y="1653" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="560" y="1639" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="576" y="1653" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="594" y="1639" width="32" height="22" rx="3" fill="#eef1f4" stroke="#9aa5b1" stroke-width="1"/>
+<text x="610" y="1653" font-size="9.5" fill="#8a94a0" text-anchor="middle">PC@</text>
+<rect x="640" y="1639" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1.9"/>
+<text x="656" y="1653" font-size="9.5" fill="#1b4332" text-anchor="middle">6</text>
+<rect x="674" y="1639" width="32" height="22" rx="3" fill="#e6f7ee" stroke="#2f855a" stroke-width="1"/>
+<text x="690" y="1653" font-size="9.5" fill="#1b4332" text-anchor="middle">0</text>
+</svg>

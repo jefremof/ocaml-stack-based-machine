@@ -3,6 +3,12 @@
 Append-only log of changes, newest on top. This first revision backfills the whole
 history (`63b33da` … present) since no changelog existed before.
 
+## 2026-07-26 — CI parallelized; opam-dune-lint recompile removed
+- What: `.github/workflows/main.yml` split back into four parallel jobs (`build-test`, `lint-fmt`, `lint-doc`, `lint-opam`), each setting up OCaml from the same pinned/cached switch, so wall-clock is the slowest single lane instead of the sum of all steps. The `lint-opam` job no longer uses `ocaml/setup-ocaml/lint-opam@v3` — that action installs `opam-dune-lint`, which pins an older dune and forces a downgrade + recompile of ~67 packages (~3m20s per run, the single biggest step). Replaced with a plain `opam lint gullwing.opam`.
+- Why: measured step timing on the prior single-job run showed ~7m49s total dominated by `lint-opam` (200s) and the sequential lint chain; the compiler setup itself was already cached (~64s). Removing the recompile and hiding the lints under the build lane targets ~3.5m warm.
+- Affects: `.github/workflows/main.yml` only (CI configuration). Trade-off: `opam lint` validates package metadata but drops opam-dune-lint's dune/opam dependency-consistency check, which is low value here since the opam file is generated from `dune-project` (`generate_opam_files`).
+- By: Efremov Mark
+
 ## 2026-07-26 — Russian source attribution in README; .DS_Store ignored
 - What: `README.md` gained an `Источники и атрибуция` section — a full citation of Charles Eric LaForest's thesis *Second-Generation Stack Computer Architecture* (University of Waterloo, 2007) that the machine is based on, plus a short Russian policy for how the work's material is reused (own-words explanations, redrawn/re-derived figures marked "адаптировано из", short attributed quotes). `.gitignore` now ignores `.DS_Store`.
 - Why: the thesis' own terms require that quotations and derived information be acknowledged; the citation is that acknowledgment. Verbatim reproduction of its figures/tables is avoided in favour of redrawing, which its terms permit.

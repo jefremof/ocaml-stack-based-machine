@@ -12,8 +12,11 @@ on:
 
 permissions: read-all
 
+# The four jobs run in parallel. Each sets up OCaml from the same shared, pinned
+# cache (built once on a cold run, restored on warm ones), so wall-clock is the
+# slowest single lane — the build — rather than the sum of all steps.
 jobs:
-  build-test-lint:
+  build-test:
     permissions:
       attestations: write
       contents: read
@@ -32,38 +35,51 @@ jobs:
     steps:
       - name: Checkout tree
         uses: actions/checkout@v4
-
-      # Single OCaml setup for the whole job. Pinning an exact version (not a
-      # floating "5") keeps the cache key stable, and dune-cache reuses build
-      # artifacts across runs. The compiler is built from source only on a cold
-      # cache; every warm run skips it.
       - name: Set-up OCaml
         uses: ocaml/setup-ocaml@v3
         with:
           ocaml-compiler: ${{ matrix.ocaml-compiler }}
           dune-cache: true
+      - run: opam install . --deps-only --with-test
+      - run: opam exec -- dune build
+      - run: opam exec -- dune runtest
 
-      - name: Install dependencies
-        run: opam install . --deps-only --with-test --with-doc
+  lint-fmt:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout tree
+        uses: actions/checkout@v4
+      - name: Set-up OCaml
+        uses: ocaml/setup-ocaml@v3
+        with:
+          ocaml-compiler: "5.2.1"
+          dune-cache: true
+      - uses: ocaml/setup-ocaml/lint-fmt@v3
 
-      - name: Build
-        run: opam exec -- dune build
+  lint-doc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout tree
+        uses: actions/checkout@v4
+      - name: Set-up OCaml
+        uses: ocaml/setup-ocaml@v3
+        with:
+          ocaml-compiler: "5.2.1"
+          dune-cache: true
+      - uses: ocaml/setup-ocaml/lint-doc@v3
 
-      - name: Test
-        run: opam exec -- dune runtest
-
-      # Lints reuse the switch set up above instead of standing up their own
-      # OCaml. `if: ${{ !cancelled() }}` runs each one even if a previous step
-      # failed, so a failing build still reports fmt/doc/opam results — the same
-      # independent feedback the separate jobs used to give.
-      - name: Lint opam
-        if: ${{ !cancelled() }}
-        uses: ocaml/setup-ocaml/lint-opam@v3
-
-      - name: Lint fmt
-        if: ${{ !cancelled() }}
-        uses: ocaml/setup-ocaml/lint-fmt@v3
-
-      - name: Lint doc
-        if: ${{ !cancelled() }}
-        uses: ocaml/setup-ocaml/lint-doc@v3
+  # Plain `opam lint` instead of ocaml/setup-ocaml/lint-opam@v3: that action
+  # installs opam-dune-lint, which pins an older dune and forces a downgrade +
+  # recompile of ~67 packages (the whole Core/ppx tree) — ~3m20s every run.
+  # `opam lint` validates the package metadata with no extra packages.
+  lint-opam:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout tree
+        uses: actions/checkout@v4
+      - name: Set-up OCaml
+        uses: ocaml/setup-ocaml@v3
+        with:
+          ocaml-compiler: "5.2.1"
+          dune-cache: true
+      - run: opam lint gullwing.opam

@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 660" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif">
+  <defs>
+    <marker id="ae" markerWidth="10" markerHeight="10" refX="7.5" refY="3.2" orient="auto"><path d="M0,0 L7.5,3.2 L0,6.4 Z" fill="#33404d"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1040" height="660" rx="10" fill="#ffffff" stroke="#d7dde3"/>
+  <text x="34" y="32" font-size="17" font-weight="700" fill="#1a202c">Gullwing — блок-схема тракта данных (datapath)</text>
+
+  <g fill="none" stroke="#33404d" stroke-width="1.4">
+    <!-- MEM / data port -->
+    <polyline points="285,100 285,193 170,193" marker-end="url(#ae)"/><!-- MEM->ISR -->
+    <polyline points="305,100 305,300" marker-end="url(#ae)"/><!-- MEM->TOP load -->
+    <polyline points="325,300 325,100" marker-end="url(#ae)"/><!-- TOP->MEM store -->
+    <polyline points="730,100 730,300" marker-end="url(#ae)"/><!-- MEM->PC -->
+    <polyline points="340,100 340,128 880,128 880,300" marker-end="url(#ae)"/><!-- MEM->MAR (from data side) -->
+    <polyline points="935,300 935,100" marker-end="url(#ae)"/><!-- MAR->adr -->
+
+    <!-- ALU -->
+    <polyline points="250,317 170,317" marker-end="url(#ae)"/><!-- TOP->ALU -->
+    <polyline points="170,329 250,329" marker-end="url(#ae)"/><!-- ALU->TOP -->
+    <polyline points="276,346 276,392 110,392 110,346" marker-end="url(#ae)"/><!-- DS->ALU 2nd operand -->
+
+    <!-- DS -->
+    <polyline points="300,346 300,410" marker-end="url(#ae)"/><!-- TOP->DS -->
+    <polyline points="320,410 320,346" marker-end="url(#ae)"/><!-- DS->TOP -->
+
+    <!-- +1 <-> PC -->
+    <polyline points="650,317 550,317" marker-end="url(#ae)"/><!-- PC->+1 -->
+    <polyline points="550,329 650,329" marker-end="url(#ae)"/><!-- +1->PC -->
+
+    <!-- A <-> +1  (parallel, no crossing) -->
+    <polyline points="605,216 605,260 505,260 505,300" marker-end="url(#ae)"/><!-- A->+1 -->
+    <polyline points="520,300 520,275 620,275 620,216" marker-end="url(#ae)"/><!-- +1->A -->
+
+    <!-- +1 <-> R  (both to R's LEFT side, parallel) -->
+    <polyline points="515,346 515,420 650,420" marker-end="url(#ae)"/><!-- +1->R -->
+    <polyline points="650,440 500,440 500,346" marker-end="url(#ae)"/><!-- R->+1 -->
+
+    <!-- +1 -> MAR -->
+    <polyline points="460,320 440,320 440,245 900,245 900,300" marker-end="url(#ae)"/>
+
+    <!-- TOP <-> A  (parallel) -->
+    <polyline points="370,313 370,182 560,182" marker-end="url(#ae)"/><!-- TOP->A -->
+    <polyline points="560,204 390,204 390,320 370,320" marker-end="url(#ae)"/><!-- A->TOP -->
+
+    <!-- TOP <-> R  (parallel, no crossing) -->
+    <polyline points="370,333 405,333 405,458 650,458" marker-end="url(#ae)"/><!-- TOP->R -->
+    <polyline points="650,472 390,472 390,343 370,343" marker-end="url(#ae)"/><!-- R->TOP -->
+
+    <!-- PC <-> R -->
+    <polyline points="704,346 704,405" marker-end="url(#ae)"/><!-- PC->R -->
+    <polyline points="716,405 716,346" marker-end="url(#ae)"/><!-- R->PC -->
+
+    <!-- R <-> RS -->
+    <polyline points="704,485 704,525" marker-end="url(#ae)"/><!-- R->RS -->
+    <polyline points="716,525 716,485" marker-end="url(#ae)"/><!-- RS->R -->
+
+    <!-- MAR inputs -->
+    <polyline points="770,323 860,323" marker-end="url(#ae)"/><!-- PC->MAR -->
+    <polyline points="680,193 915,193 915,300" marker-end="url(#ae)"/><!-- A->MAR -->
+    <polyline points="770,450 946,450 946,346" marker-end="url(#ae)"/><!-- R->MAR -->
+  </g>
+
+  <!-- ===== BOXES ===== -->
+  <rect x="50" y="50" width="930" height="50" fill="#fdf3e0" stroke="#c05621"/>
+  <text x="330" y="80" font-size="13" fill="#7b341e" text-anchor="middle">data</text>
+  <text x="500" y="80" font-size="15" font-weight="700" fill="#7b341e" text-anchor="middle">MEM</text>
+  <text x="935" y="80" font-size="13" fill="#7b341e" text-anchor="middle">adr</text>
+
+  <g font-size="15" font-weight="700" fill="#1a365d" text-anchor="middle">
+    <rect x="50"  y="170" width="120" height="46" fill="#eaf2fb" stroke="#2b6cb0"/><text x="110" y="199">ISR</text>
+    <rect x="560" y="170" width="120" height="46" fill="#eaf2fb" stroke="#2b6cb0"/><text x="620" y="199">A</text>
+    <rect x="50"  y="300" width="120" height="46" fill="#e6f7ee" stroke="#2f855a"/><text x="110" y="329">ALU</text>
+    <rect x="250" y="300" width="120" height="46" fill="#eaf2fb" stroke="#2b6cb0"/><text x="310" y="329">TOP</text>
+    <rect x="460" y="300" width="90"  height="46" fill="#e6f7ee" stroke="#2f855a"/><text x="505" y="329">+1</text>
+    <rect x="650" y="300" width="120" height="46" fill="#eaf2fb" stroke="#2b6cb0"/><text x="710" y="329">PC</text>
+    <rect x="860" y="300" width="120" height="46" fill="#eaf2fb" stroke="#2b6cb0"/><text x="920" y="329">MAR</text>
+    <rect x="650" y="405" width="120" height="80" fill="#eaf2fb" stroke="#2b6cb0"/><text x="710" y="437">R</text>
+  </g>
+
+  <!-- stacks: two pieces with a gap (wavy edges face each other = stack continues) -->
+  <g fill="#f3ecfb" stroke="#6b46c1" stroke-width="1.5">
+    <path d="M250,410 H370 V454 q-20,10 -40,0 t-40,0 t-40,0 Z"/>
+    <path d="M250,462 q20,10 40,0 t40,0 t40,0 V490 H250 Z"/>
+    <path d="M650,525 H770 V569 q-20,10 -40,0 t-40,0 t-40,0 Z"/>
+    <path d="M650,577 q20,10 40,0 t40,0 t40,0 V605 H650 Z"/>
+  </g>
+  <g font-size="15" font-weight="700" fill="#44337a" text-anchor="middle"><text x="310" y="438">DS</text><text x="710" y="553">RS</text></g>
+
+  <text x="34" y="634" font-size="11.5" fill="#5a6570">Каждая передача — отдельная однонаправленная линия. MAR ← A / PC / R / +1 / MEM.</text>
+  <text x="34" y="652" font-size="11" fill="#8a94a0">Адаптировано из: C. E. LaForest, 2007, Fig. 6.1 (связи по §6.1 и RTL-таблицам, Alg. 3–7).</text>
+</svg>

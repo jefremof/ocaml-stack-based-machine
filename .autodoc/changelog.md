@@ -21,6 +21,12 @@ history (`63b33da` … present) since no changelog existed before.
 - Affects: `README.md` (docs only).
 - By: Efremov Mark
 
+## 2026-07-26 — datapath and ISR diagrams in README
+- What: added `docs/datapath.svg` and `docs/isr.svg` — original redraws of the Gullwing block-level datapath and the instruction shift register — and a new `Архитектура` section in `README.md` tying them to `state` and `isr`/`word_to_batch`/`isr_shift`. Each transfer is drawn as its own single-direction line; DS/RS use the two-piece torn-stack symbol; both marked "адаптировано из … Fig. 6.1/6.2" per the attribution policy.
+- Why: the datapath and instruction fetch are the structure the code implements; diagrams make the register/stack layout legible.
+- Affects: `README.md`, `docs/datapath.svg`, `docs/isr.svg` (docs only).
+- By: Efremov Mark
+
 ## 2026-07-26 — instruction-format diagram in README
 - What: added `docs/instruction-format.svg` — an original redraw of the Gullwing instruction word layout (six 5-bit slots S0–S5 + 2 unused bits; data words occupy a full word), and embedded it in a new `Формат инструкций` section of `README.md` that ties it to `word_to_batch`. The SVG is our own drawing, marked "адаптировано из … Fig. 6.3", per the attribution policy.
 - Why: the packing of instructions into a machine word is the core idea the code implements; a diagram makes it legible.

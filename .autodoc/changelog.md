@@ -21,6 +21,11 @@ history (`63b33da` … present) since no changelog existed before.
 - Affects: `README.md` (docs only).
 - By: Efremov Mark
 
+## 2026-07-26 — datapath diagram: single-wave torn-stack symbol
+- What: `docs/datapath.svg` — the DS/RS stack symbols now use a single S-wave for the torn edge (was a triple wave), matching the original figure, and the lower half's wave is vertically mirrored so the two halves are parallel with an even gap.
+- Affects: `docs/datapath.svg` (docs only).
+- By: Efremov Mark
+
 ## 2026-07-26 — README title and intro rewritten
 - What: replaced the English `# ocaml-stack-based-machine` heading and one-line description with a Russian title (`Стековая машина на OCaml`), a short motivation line, and a `Что такое стековая машина` intro that explains zero-operand instructions, instruction packing / code density, the return stack, and typical embedded / hard-real-time use. Gullwing is framed as the starting point (based on LaForest's work), not a fixed spec.
 - Why: the old header was a bare repo slug; the project is a personal exploration of stack-machine architecture and needed an intro that orients readers unfamiliar with stack machines.

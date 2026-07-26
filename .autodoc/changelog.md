@@ -3,6 +3,12 @@
 Append-only log of changes, newest on top. This first revision backfills the whole
 history (`63b33da` … present) since no changelog existed before.
 
+## 2026-07-26 — Russian source attribution in README; .DS_Store ignored
+- What: `README.md` gained an `Источники и атрибуция` section — a full citation of Charles Eric LaForest's thesis *Second-Generation Stack Computer Architecture* (University of Waterloo, 2007) that the machine is based on, plus a short Russian policy for how the work's material is reused (own-words explanations, redrawn/re-derived figures marked "адаптировано из", short attributed quotes). `.gitignore` now ignores `.DS_Store`.
+- Why: the thesis' own terms require that quotations and derived information be acknowledged; the citation is that acknowledgment. Verbatim reproduction of its figures/tables is avoided in favour of redrawing, which its terms permit.
+- Affects: `README.md`, `.gitignore` (docs and repo hygiene only; no source or runtime change).
+- By: Efremov Mark
+
 ## 2026-07-26 — CI consolidated into one job; compiler set up once
 - What: `.github/workflows/main.yml` collapsed the four jobs (`build-and-test`, `lint-doc`, `lint-fmt`, `lint-opam`) — each of which stood up its own OCaml via `ocaml/setup-ocaml@v3` — into a single `build-test-lint` job that sets up OCaml once and runs build, test, and the three lints as steps. The compiler is pinned to an exact `"5.2.1"` (was a floating `4`) so the cache key stays stable, and `dune-cache: true` is enabled. Lint steps carry `if: ${{ !cancelled() }}` so they still report independently when an earlier step fails.
 - Why: setup ran four times per CI run, each building the OCaml compiler from source and installing the Core/ppx dependency tree — the bulk of the ~20-minute wall time. Setting up once, on a stable pinned cache key, removes the 4× duplication; warm runs skip the compiler build entirely.

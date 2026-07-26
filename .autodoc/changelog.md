@@ -3,6 +3,12 @@
 Append-only log of changes, newest on top. This first revision backfills the whole
 history (`63b33da` … present) since no changelog existed before.
 
+## 2026-07-26 — CI consolidated into one job; compiler set up once
+- What: `.github/workflows/main.yml` collapsed the four jobs (`build-and-test`, `lint-doc`, `lint-fmt`, `lint-opam`) — each of which stood up its own OCaml via `ocaml/setup-ocaml@v3` — into a single `build-test-lint` job that sets up OCaml once and runs build, test, and the three lints as steps. The compiler is pinned to an exact `"5.2.1"` (was a floating `4`) so the cache key stays stable, and `dune-cache: true` is enabled. Lint steps carry `if: ${{ !cancelled() }}` so they still report independently when an earlier step fails.
+- Why: setup ran four times per CI run, each building the OCaml compiler from source and installing the Core/ppx dependency tree — the bulk of the ~20-minute wall time. Setting up once, on a stable pinned cache key, removes the 4× duplication; warm runs skip the compiler build entirely.
+- Affects: `.github/workflows/main.yml` only (CI configuration; no source or runtime change). `5.2.1` matches the local toolchain the project already builds on.
+- By: Efremov Mark
+
 ## 2026-07-26 — autodoc tooling added; CI triggers scoped to main and develop
 - What:
   - CI trigger scoping (`aa306ff`): `.github/workflows/main.yml` no longer fires on the bare `on: [push, pull_request]` (which ran on every branch). `push` and `pull_request` are now branch-filtered to `main` and `develop`.

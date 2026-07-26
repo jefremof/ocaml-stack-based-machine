@@ -13,7 +13,7 @@ on:
 permissions: read-all
 
 jobs:
-  build-and-test:
+  build-test-lint:
     permissions:
       attestations: write
       contents: read
@@ -25,7 +25,7 @@ jobs:
         os:
           - ubuntu-latest
         ocaml-compiler:
-          - 4
+          - "5.2.1"
 
     runs-on: ${{ matrix.os }}
 
@@ -33,45 +33,37 @@ jobs:
       - name: Checkout tree
         uses: actions/checkout@v4
 
+      # Single OCaml setup for the whole job. Pinning an exact version (not a
+      # floating "5") keeps the cache key stable, and dune-cache reuses build
+      # artifacts across runs. The compiler is built from source only on a cold
+      # cache; every warm run skips it.
       - name: Set-up OCaml
         uses: ocaml/setup-ocaml@v3
         with:
           ocaml-compiler: ${{ matrix.ocaml-compiler }}
+          dune-cache: true
 
-      - run: opam install . --deps-only --with-test
-      - run: eval $(opam env)
-      - run: opam exec -- dune build -j3
-      - run: opam exec -- dune runtest
+      - name: Install dependencies
+        run: opam install . --deps-only --with-test --with-doc
 
-  lint-doc:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout tree
-        uses: actions/checkout@v4
-      - name: Set-up OCaml
-        uses: ocaml/setup-ocaml@v3
-        with:
-          ocaml-compiler: 4
-      - uses: ocaml/setup-ocaml/lint-doc@v3
+      - name: Build
+        run: opam exec -- dune build
 
-  lint-fmt:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout tree
-        uses: actions/checkout@v4
-      - name: Set-up OCaml
-        uses: ocaml/setup-ocaml@v3
-        with:
-          ocaml-compiler: 4
-      - uses: ocaml/setup-ocaml/lint-fmt@v3
+      - name: Test
+        run: opam exec -- dune runtest
 
-  lint-opam:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout tree
-        uses: actions/checkout@v4
-      - name: Set-up OCaml
-        uses: ocaml/setup-ocaml@v3
-        with:
-          ocaml-compiler: 4
-      - uses: ocaml/setup-ocaml/lint-opam@v3
+      # Lints reuse the switch set up above instead of standing up their own
+      # OCaml. `if: ${{ !cancelled() }}` runs each one even if a previous step
+      # failed, so a failing build still reports fmt/doc/opam results — the same
+      # independent feedback the separate jobs used to give.
+      - name: Lint opam
+        if: ${{ !cancelled() }}
+        uses: ocaml/setup-ocaml/lint-opam@v3
+
+      - name: Lint fmt
+        if: ${{ !cancelled() }}
+        uses: ocaml/setup-ocaml/lint-fmt@v3
+
+      - name: Lint doc
+        if: ${{ !cancelled() }}
+        uses: ocaml/setup-ocaml/lint-doc@v3
